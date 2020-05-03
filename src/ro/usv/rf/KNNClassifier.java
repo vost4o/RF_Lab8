@@ -3,7 +3,7 @@ package ro.usv.rf;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Classificators {
+public class KNNClassifier {
 
 	/**
 	 * This class is responsible for storing the distance to unknown class and the

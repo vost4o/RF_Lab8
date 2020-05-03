@@ -69,8 +69,28 @@ public class VMainClass {
 				}
 			}
 			
+			// calculate distances
+						double[][] distances = new double[evaluationSet.length][trainingSet.length];
+						for (int i = 0; i < evaluationSet.length; i++) {
+							for (int j = 0; j < trainingSet.length; j++) {
+								distances[i][j] = DistanceUtils.euclidianDistance(evaluationSet[i], trainingSet[j], 1);
+							}
+						}
+			
 			FileUtils.writeLearningSetToFile("eval.csv", evaluationSet);
 			FileUtils.writeLearningSetToFile("train.csv", trainingSet);
+			
+			String[][] newEvalSet = new String[evaluationSet.length][evaluationSet[0].length + 1];
+			
+			for(int i = 0; i < evaluationSet.length; i++) {
+				for(int j = 0; j < trainingSet[i].length; j++) {
+					newEvalSet[i][j] = evaluationSet[i][j];
+				}
+				
+				newEvalSet[i][newEvalSet[0].length - 1] = KNNClassifier.performKNNClassification(evaluationSet[i], trainingSet, distances[i], 3);
+			}
+			
+			FileUtils.writeLearningSetToFile("KNNLearningSet.txt", newEvalSet);
 
 		} catch (USVInputFileCustomException e) {
 			e.printStackTrace();

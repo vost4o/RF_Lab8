@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-class Classifier {
+class Type3Classifier {
 	// The key is the class and the value is the list of indexes
 	private Map<String, ArrayList<Integer>> classesMap;
 	// Data set
@@ -16,7 +16,7 @@ class Classifier {
 	// Unknown class pattern
 	private String[] unknownClassPattern;
 
-	public Classifier(String[][] dataSet) {
+	public Type3Classifier(String[][] dataSet) {
 		this.dataSet = dataSet;
 		// Initialize classes map
 		initClassesMap();
